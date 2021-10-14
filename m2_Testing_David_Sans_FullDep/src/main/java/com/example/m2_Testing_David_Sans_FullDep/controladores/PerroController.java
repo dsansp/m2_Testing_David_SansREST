@@ -4,6 +4,7 @@ import com.example.m2_Testing_David_Sans_FullDep.entities.Perro;
 import com.example.m2_Testing_David_Sans_FullDep.repositories.PerroRepository;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,10 +21,11 @@ public class PerroController {
 
     @GetMapping("/data")
     public void demoData() {
-        Perro pincher = new Perro(null,"XS001","Demo1","pincher","macho", 1.5,false,0  );
-        Perro american = new Perro(null,"XL001","Demo2","American Stanfordincher","Hembra", 25.5,true,2  );
+        Perro pincher = new Perro(null, "XS001", "Demo1", "pincher", "macho", 1.5, false, 0);
+        Perro american = new Perro(null, "XL001", "Demo2", "American Stanfordincher", "Hembra", 25.5, true, 2);
         repository.save(pincher);
-        repository.save(american);}
+        repository.save(american);
+    }
 
     // Get Recuperar
 
@@ -36,18 +38,55 @@ public class PerroController {
 
     @GetMapping("/perros/{id}")
     public Perro findById(@PathVariable long id) {
-     Optional<Perro> perroOptional =repository.findById(id);
-     if (perroOptional.isPresent())
-        return perroOptional.get();
+        Optional<Perro> perroOptional = repository.findById(id);
+        if (perroOptional.isPresent())
+            return perroOptional.get();
         else
             return null;
     }
 
     // Get by name
     @GetMapping("/perros/nombre/{name}")
-    public List<Perro>findByNameIgnoreCase(@PathVariable String name){
-      return repository.findByNameIgnoreCase(name);
+    public List<Perro> findByNameIgnoreCase(@PathVariable String name) {
+        return repository.findByNameIgnoreCase(name);
     }
+
+    // Get by Chip
+    @GetMapping("/perros/chip/{chip}")
+    public List<Perro> findByChipIgnoreCase(@PathVariable String chip) {
+        return repository.findByChipIgnoreCase(chip);
+    }
+
+    // Get by Raza
+    @GetMapping("/perros/raza/{raza}")
+    public List<Perro> findByRazaIgnoreCase(@PathVariable String raza) {
+        return repository.findByRazaIgnoreCase(raza);
+    }
+
+    // Get by sexo
+    @GetMapping("/perros/sexo/{sexo}")
+    public List<Perro> findBySexoIgnoreCase(@PathVariable String sexo) {
+        return repository.findBySexoIgnoreCase(sexo);
+    }
+
+    // Get by peso
+    @GetMapping("/perros/peso/{peso}")
+    public List<Perro> findByPesoLessThan(@PathVariable Double peso) {
+        return repository.findByPesoLessThan(peso);
+    }
+
+    // Get by Licencia
+    @GetMapping("/perros/licencia/{licencia}")
+    public List<Perro> findByLicencia(@PathVariable Boolean licencia) {
+        return repository.findByLicencia(licencia);
+    }
+
+    // Get by numero de adopciones
+    @GetMapping("/perros/adopciones/{adopciones}")
+    public List<Perro> findByAdopcionesLessThan(@PathVariable Integer adopciones) {
+        return repository.findByAdopcionesLessThan(adopciones);
+    }
+
 
     // Post Crear
 
@@ -73,5 +112,12 @@ public class PerroController {
             repository.deleteById(id);
 
     }
+
 }
+
+
+
+
+
+
 
