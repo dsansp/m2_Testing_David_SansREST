@@ -1,11 +1,14 @@
 package com.example.m2_Testing_David_Sans_FullDep;
 
+import com.example.m2_Testing_David_Sans_FullDep.entities.Perro;
 import com.example.m2_Testing_David_Sans_FullDep.repositories.PerroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
 
 @SpringBootApplication
@@ -53,9 +56,105 @@ public class M2TestingDavidSansFullDepApplication implements CommandLineRunner {
 					System.out.println("Hasta la próxima");
 					break;
 				} else if (opcion == 1) {
+					System.out.println("Introduce el código del chip");
+					String chip = scanner.nextLine();
+					System.out.println("Introduce el nombre del animal");
+					String name = scanner.nextLine();
+					System.out.println("Introduce la raza");
+					String raza = scanner.nextLine();
+					System.out.println("Introduce el sexo");
+					String sexo = scanner.nextLine();
+					System.out.println("Introduce el peso");
+					Double peso = scanner.nextDouble();
+					scanner.nextLine();
+					System.out.println("Introduce si necesita licencia de perro peligroso");
+					Boolean licencia = scanner.nextBoolean();
+					scanner.nextLine();
+					System.out.println("Introduce el numero de veces que ha sido adoptado");
+					Integer adopciones = scanner.nextInt();
+					scanner.nextLine();
+
+					Perro animal = new Perro(null, chip, name, raza, sexo, peso, licencia, adopciones);
+					repository.save(animal);
+					System.out.println("el registro se ha creado correctamente");
+				} else if (opcion == 2) {
+					System.out.println("Por favor, introduzca el id del perro que desea modificar");
+					Long id = scanner.nextLong();
+					scanner.nextLine();
+					Optional<Perro> perroOptional = repository.findById(id);
+					if (perroOptional.isEmpty()) {
+						System.out.println("No existe el animal solicitado");
+						continue;
+					}
+					Perro perro = perroOptional.get();
+					System.out.println("Introduce el código del chip: (Actual  " + perro.getChip() + " )");
+					String chip = scanner.nextLine();
+					perro.setChip(chip);
+					System.out.println("Introduce el nombre: (Actual  " + perro.getName() + " )");
+					String name = scanner.nextLine();
+					perro.setName(name);
+					System.out.println("Introduce la raza: (Actual  " + perro.getRaza() + " )");
+					String raza = scanner.nextLine();
+					perro.setRaza(raza);
+					System.out.println("Introduce el sexo: (Actual  " + perro.getSexo() + " )");
+					String sexo = scanner.nextLine();
+					perro.setSexo(sexo);
+					System.out.println("Introduce el peso: (Actual  " + perro.getPeso() + " )");
+					Double peso = scanner.nextDouble();
+					scanner.nextLine();
+					perro.setPeso(peso);
+					System.out.println("Introduce si es necesaria la licencia: (Actual " + perro.getLicencia() + " )");
+					Boolean licencia = scanner.nextBoolean();
+					scanner.nextLine();
+					perro.setLicencia(licencia);
+					System.out.println("Introduce el numero de adopciones: (Actual  " + perro.getAdopciones() + " )");
+					Integer adopciones = scanner.nextInt();
+					scanner.nextLine();
+					perro.setAdopciones(adopciones);
+					System.out.println("Registro actualizado correctamente");
+
+				} else if (opcion == 3) {
+					System.out.println("ha elegido la opción buscar: ");
+
+					while (true) {
+						subMenu();
+						scanner = new Scanner(System.in);
+						int subOpcion = scanner.nextInt();
+						scanner.nextLine();
+						if (subOpcion == 0) {
+							System.out.println("volver al menu principal");
+							break;
+						} else if (subOpcion == 1) {
+							System.out.println("Mostrar todos: ");
+							List<Perro> perro = repository.findAll();
+							if (perro.isEmpty()) {
+								System.out.println("No hay animales disponibles.");
+							} else {
+								System.out.println(perro);
+
+							}
+						} else if (subOpcion == 2) {
+							System.out.println("Introduzca la Id a buscar: ");
+							Long id = scanner.nextLong();
+							scanner.nextLine();
+							Optional<Perro> perroOptional = repository.findById(id);
+							if (perroOptional.isPresent()) {
+								Perro animal = perroOptional.get();
+								System.out.println(animal);
+							} else {
+								System.out.println("No existe el perro seleccionado");
+							}
+						} else if (subOpcion == 3) {
+							System.out.println("Introduce un código de chip a buscar: ");
+							String chip = scanner.nextLine();
+							for (Perro animal : repository.findByChipIgnoreCase(chip))
+								System.out.println(chip);
+						}
+					}
 				}
 
-			} catch (Exception e) {
+		}
+			catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
