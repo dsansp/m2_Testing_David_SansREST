@@ -148,40 +148,40 @@ public class M2TestingDavidSansFullDepApplication implements CommandLineRunner {
 							System.out.println("Introduce un código de chip a buscar: ");
 							String chip = scanner.nextLine();
 							for (Perro animal : repository.findByChipIgnoreCase(chip))
-								System.out.println(chip);
+								System.out.println(animal);
 						} else if (subOpcion == 4) {
 							System.out.println("Introduce un nombre a buscar: ");
 							String name = scanner.nextLine();
 							for (Perro animal : repository.findByNameIgnoreCase(name))
-								System.out.println(name);
+								System.out.println(animal);
 						} else if (subOpcion == 5) {
 							System.out.println("Introduce una raza a buscar: ");
 							String raza = scanner.nextLine();
 							for (Perro animal : repository.findByRazaIgnoreCase(raza))
-								System.out.println(raza);
+								System.out.println(animal);
 						} else if (subOpcion == 6) {
 							System.out.println("Introduce el sexo a buscar: ");
 							String sexo = scanner.nextLine();
 							for (Perro animal : repository.findBySexoIgnoreCase(sexo))
-								System.out.println(sexo);
+								System.out.println(animal);
 						} else if (subOpcion == 7) {
 							System.out.println("Introduce el peso maximo a buscar: ");
 							Double peso = scanner.nextDouble();
 							scanner.nextLine();
 							for (Perro animal : repository.findByPesoLessThan(peso))
-								System.out.println(peso);
+								System.out.println(animal);
 						} else if (subOpcion == 8) {
 							System.out.println("Introduce si desea buscar si es necesaria licencia de perro peligroso: ");
 							Boolean licencia = scanner.nextBoolean();
 							scanner.nextLine();
 							for (Perro animal : repository.findByLicencia(licencia))
-								System.out.println(licencia);
+								System.out.println(animal);
 						} else if (subOpcion == 9) {
-							System.out.println("Introduce el peso maximo a buscar: ");
+							System.out.println("Introduce el numero maximo de adopciones a buscar: ");
 							Integer adopciones = scanner.nextInt();
 							scanner.nextLine();
 							for (Perro animal : repository.findByAdopcionesLessThan(adopciones))
-								System.out.println(adopciones);
+								System.out.println(animal);
 						} else if (subOpcion == 10) {
 							Long numero = repository.count();
 							System.out.println("Ha escogido la opción consultar el numero de registros " + numero);
