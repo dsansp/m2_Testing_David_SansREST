@@ -30,13 +30,14 @@ public class M2TestingDavidSansFullDepApplication implements CommandLineRunner {
 		System.out.println("0- Salir: ");
 		System.out.println("1- Buscar todos: ");
 		System.out.println("2- Buscar por Id: ");
-		System.out.println("3- Buscar por Nombre: ");
-		System.out.println("4- Buscar por Raza: ");
-		System.out.println("5- Buscar por Sexo: ");
-		System.out.println("6- Buscar por Peso: ");
-		System.out.println("7- Buscar por Fecha de nacimiento: ");
-		System.out.println("8- Buscar por si necesita licencia de perro peligroso: ");
-		System.out.println("9- Buscar por numero de veces que ha sido adoptado: ");
+		System.out.println("3- Buscar por Código de Chip: ");
+		System.out.println("4- Buscar por Nombre: ");
+		System.out.println("5- Buscar por Raza: ");
+		System.out.println("6- Buscar por Sexo: ");
+		System.out.println("7- Buscar por Peso: ");
+		System.out.println("8- Buscar por Fecha de nacimiento: ");
+		System.out.println("9- Buscar por si necesita licencia de perro peligroso: ");
+		System.out.println("10- Buscar por numero de veces que ha sido adoptado: ");
 	}
 
 	@Override

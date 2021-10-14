@@ -13,26 +13,24 @@ public class Perro {
     @GeneratedValue(strategy = GenerationType.IDENTITY )
 
     private Long id;
-    private Integer chip;
+    private String chip;
     private String name;
     private  String raza;
     private String sexo;
     private Double peso;
-    private LocalDate fecha_nacimiento;
     private Boolean licencia;
     private Integer adopciones;
 
     public Perro() {
     }
 
-    public Perro(Long id, Integer chip, String name, String raza, String sexo, Double peso, LocalDate fecha_nacimiento, Boolean licencia, Integer adopciones) {
+    public Perro(Long id, String chip, String name, String raza, String sexo, Double peso,  Boolean licencia, Integer adopciones) {
         this.id = id;
         this.chip = chip;
         this.name = name;
         this.raza = raza;
         this.sexo = sexo;
         this.peso = peso;
-        this.fecha_nacimiento = fecha_nacimiento;
         this.licencia = licencia;
         this.adopciones = adopciones;
     }
@@ -45,11 +43,11 @@ public class Perro {
         this.id = id;
     }
 
-    public Integer getChip() {
+    public String getChip() {
         return chip;
     }
 
-    public void setChip(Integer chip) {
+    public void setChip(String chip) {
         this.chip = chip;
     }
 
@@ -85,13 +83,6 @@ public class Perro {
         this.peso = peso;
     }
 
-    public LocalDate getFecha_nacimiento() {
-        return fecha_nacimiento;
-    }
-
-    public void setFecha_nacimiento(LocalDate fecha_nacimiento) {
-        this.fecha_nacimiento = fecha_nacimiento;
-    }
 
     public Boolean getLicencia() {
         return licencia;
@@ -118,7 +109,6 @@ public class Perro {
                 ", raza='" + raza + '\'' +
                 ", sexo='" + sexo + '\'' +
                 ", peso=" + peso +
-                ", fecha_nacimiento=" + fecha_nacimiento +
                 ", licencia=" + licencia +
                 ", adopciones=" + adopciones +
                 '}';
