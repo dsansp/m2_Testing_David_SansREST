@@ -38,9 +38,9 @@ public class M2TestingDavidSansFullDepApplication implements CommandLineRunner {
 		System.out.println("5- Buscar por Raza: ");
 		System.out.println("6- Buscar por Sexo: ");
 		System.out.println("7- Buscar por Peso: ");
-		System.out.println("8- Buscar por Fecha de nacimiento: ");
-		System.out.println("9- Buscar por si necesita licencia de perro peligroso: ");
-		System.out.println("10- Buscar por numero de veces que ha sido adoptado: ");
+		System.out.println("8- Buscar por si necesita licencia de perro peligroso: ");
+		System.out.println("9- Buscar por numero de veces que ha sido adoptado: ");
+		System.out.println("10- Consultar el numero de registros: ");
 	}
 
 	@Override
@@ -149,11 +149,71 @@ public class M2TestingDavidSansFullDepApplication implements CommandLineRunner {
 							String chip = scanner.nextLine();
 							for (Perro animal : repository.findByChipIgnoreCase(chip))
 								System.out.println(chip);
+						} else if (subOpcion == 4) {
+							System.out.println("Introduce un nombre a buscar: ");
+							String name = scanner.nextLine();
+							for (Perro animal : repository.findByNameIgnoreCase(name))
+								System.out.println(name);
+						} else if (subOpcion == 5) {
+							System.out.println("Introduce una raza a buscar: ");
+							String raza = scanner.nextLine();
+							for (Perro animal : repository.findByRazaIgnoreCase(raza))
+								System.out.println(raza);
+						} else if (subOpcion == 6) {
+							System.out.println("Introduce el sexo a buscar: ");
+							String sexo = scanner.nextLine();
+							for (Perro animal : repository.findBySexoIgnoreCase(sexo))
+								System.out.println(sexo);
+						} else if (subOpcion == 7) {
+							System.out.println("Introduce el peso maximo a buscar: ");
+							Double peso = scanner.nextDouble();
+							scanner.nextLine();
+							for (Perro animal : repository.findByPesoLessThan(peso))
+								System.out.println(peso);
+						} else if (subOpcion == 8) {
+							System.out.println("Introduce si desea buscar si es necesaria licencia de perro peligroso: ");
+							Boolean licencia = scanner.nextBoolean();
+							scanner.nextLine();
+							for (Perro animal : repository.findByLicencia(licencia))
+								System.out.println(licencia);
+						} else if (subOpcion == 9) {
+							System.out.println("Introduce el peso maximo a buscar: ");
+							Integer adopciones = scanner.nextInt();
+							scanner.nextLine();
+							for (Perro animal : repository.findByAdopcionesLessThan(adopciones))
+								System.out.println(adopciones);
+						} else if (subOpcion == 10) {
+							Long numero = repository.count();
+							System.out.println("Ha escogido la opción consultar el numero de registros " + numero);
+						} else {
+							System.out.println("Opción no disponible");
 						}
 					}
-				}
+				} else if (opcion == 4) {
+					System.out.println("Introduzca el id del perro que desea borrar");
+					Long id = scanner.nextLong();
+					boolean exists = repository.existsById(id);
+					if (exists) {
+						repository.deleteById(id);
+						System.out.println("Registro del perro borrado");
+					} else {
+						System.out.println("No existe el animal solicitado");
+					}
+				} else if (opcion == 5) {
+					System.out.println("Esto borrará todos los registros de los Perros, ¿está seguro? (true o false)");
+					boolean confirm = scanner.nextBoolean();
 
-		}
+					if (!confirm) continue;
+
+					repository.deleteAll();
+					System.out.println("Registros borrados correctamente");
+
+
+				} else {
+					System.out.println("Opción no disponible");
+
+				}
+			}
 			catch (Exception e) {
 				e.printStackTrace();
 			}
