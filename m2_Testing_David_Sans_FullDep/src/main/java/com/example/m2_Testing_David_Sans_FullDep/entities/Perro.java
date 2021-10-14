@@ -1,12 +1,19 @@
 package com.example.m2_Testing_David_Sans_FullDep.entities;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.time.LocalDate;
 
 @Entity
 public class Perro {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY )
+
     private Long id;
+    private Integer chip;
     private String name;
     private  String raza;
     private String sexo;
@@ -15,12 +22,12 @@ public class Perro {
     private Boolean licencia;
     private Integer adopciones;
 
-
     public Perro() {
     }
 
-    public Perro(Long id, String name, String raza, String sexo, Double peso, LocalDate fecha_nacimiento, Boolean licencia, Integer adopciones) {
+    public Perro(Long id, Integer chip, String name, String raza, String sexo, Double peso, LocalDate fecha_nacimiento, Boolean licencia, Integer adopciones) {
         this.id = id;
+        this.chip = chip;
         this.name = name;
         this.raza = raza;
         this.sexo = sexo;
@@ -36,6 +43,14 @@ public class Perro {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Integer getChip() {
+        return chip;
+    }
+
+    public void setChip(Integer chip) {
+        this.chip = chip;
     }
 
     public String getName() {
@@ -98,6 +113,7 @@ public class Perro {
     public String toString() {
         return "Perro{" +
                 "id=" + id +
+                ", chip=" + chip +
                 ", name='" + name + '\'' +
                 ", raza='" + raza + '\'' +
                 ", sexo='" + sexo + '\'' +
@@ -108,3 +124,4 @@ public class Perro {
                 '}';
     }
 }
+
