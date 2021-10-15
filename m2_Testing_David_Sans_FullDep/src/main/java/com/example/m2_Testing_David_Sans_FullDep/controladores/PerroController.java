@@ -105,12 +105,17 @@ public class PerroController {
 
     }
 
-    // Delete Borrar poor id
+    // Delete Borrar por id
     @DeleteMapping("/perros/{id}")
     public void deleteById(@PathVariable Long id) {
         if (repository.existsById(id))
             repository.deleteById(id);
 
+    }
+    // Delete Borrar all
+    @DeleteMapping("/perros")
+    public void deleteAll() {
+       repository.deleteAll();
     }
 
 }
