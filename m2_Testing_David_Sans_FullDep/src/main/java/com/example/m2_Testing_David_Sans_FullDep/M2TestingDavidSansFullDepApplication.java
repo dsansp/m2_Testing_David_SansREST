@@ -111,6 +111,7 @@ public class M2TestingDavidSansFullDepApplication implements CommandLineRunner {
 					Integer adopciones = scanner.nextInt();
 					scanner.nextLine();
 					perro.setAdopciones(adopciones);
+					repository.save(perro);
 					System.out.println("Registro actualizado correctamente");
 
 				} else if (opcion == 3) {
